@@ -40,10 +40,10 @@ custom_file_path:
 # ---------------------------------------------------------------
 
 favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
-  safari_pinned_tab: /images/logo.svg
+  small: /images/favicon-16x16-next.png # 需改
+  medium: /images/favicon-32x32-next.png # 需改
+  apple_touch_icon: /images/apple-touch-icon-next.png # 需改
+  safari_pinned_tab: /images/logo.svg # 需改
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
@@ -126,7 +126,7 @@ menu:
   categories: /categories/ || th
   tags: /tags/ || tags
   about: /about/ || user
-  message: /message/ || bell
+  message: /message/ || bell # 看情况改
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -164,10 +164,10 @@ sidebar:
   # Enable sidebar on narrow view (only for Muse | Mist).
   onmobile: false
 
-# Sidebar Avatar
+# Sidebar Avatar 头像
 avatar:
   # Replace the default image and set the url here.
-  url: /images/avatar.jpg
+  url: /images/avatar.jpg # 需改
   # If true, the avatar will be dispalyed in circle.
   rounded: true
   # If true, the avatar will be rotated with the cursor.
@@ -181,8 +181,8 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  GitHub: https://github.com/magicflung || github
-  CSDN: https://blog.csdn.net/weixin_41800884 || maxcdn
+  GitHub: https://github.com/magicflung || github # 需改
+  CSDN: https://blog.csdn.net/weixin_41800884 || maxcdn # 需改
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
@@ -275,8 +275,8 @@ reward_settings:
   #comment: Donate comment here.
 
 reward:
-  wechatpay: /images/wechatpay.jpg
-  alipay: /images/alipay.jpg
+  wechatpay: /images/wechatpay.jpg # 需改
+  alipay: /images/alipay.jpg # 需改
   #bitcoin: /images/bitcoin.png
 
 # Related popular posts
@@ -623,8 +623,8 @@ changyan:
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
   enable: true
-  appid: ogeebUOA3cE6iHMOmWC9IdvV-gzGzoHsz # Your leancloud application appid
-  appkey: U1fUosFMtzuRYccYpt5bEDhv # Your leancloud application appkey
+  appid:  # Your leancloud application appid  需改
+  appkey: # Your leancloud application appkey 需改
   notify: false # Mail notifier
   verify: false # Verification code
   placeholder: Just go go # Comment box placeholder
@@ -703,8 +703,8 @@ cnzz_siteid:
 # Do not enable both `valine.visitor` and `leancloud_visitors`.
 leancloud_visitors:
   enable: true
-  app_id: ogeebUOA3cE6iHMOmWC9IdvV-gzGzoHsz
-  app_key: U1fUosFMtzuRYccYpt5bEDhv
+  app_id: # 需改
+  app_key: # 需改
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
