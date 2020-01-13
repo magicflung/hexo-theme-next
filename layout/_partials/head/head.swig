@@ -59,6 +59,7 @@
 {%- endif %}
 
 {# Export some Hexo Configurations to Front-End #}
+
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
@@ -88,3 +89,4 @@
     sidebarPadding: 40
   };
 </script>
+

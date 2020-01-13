@@ -2,7 +2,7 @@
 
 <script>
 NexT.utils.getScript('{{ valine_uri }}', () => {
-  var GUEST = ['nick', 'mail', 'link'];
+  var GUEST = ['nick', 'mail'];
   var guest = '{{ theme.valine.guest_info }}';
   guest = guest.split(',').filter(item => {
     return GUEST.includes(item);
@@ -17,6 +17,7 @@ NexT.utils.getScript('{{ valine_uri }}', () => {
     avatar: '{{ theme.valine.avatar }}',
     meta: guest,
     pageSize: '{{ theme.valine.pageSize }}' || 10,
+	avatar_cdn:'{{ theme.valine.avatar_cdn }}',
     visitor: {{ theme.valine.visitor }},
     lang: '{{ theme.valine.language }}' || 'zh-cn',
     path: location.pathname,

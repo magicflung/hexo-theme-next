@@ -7,13 +7,16 @@
     {%- if theme.footer.beian.gongan_id and theme.footer.beian.gongan_num %}
       {{- next_url('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + theme.footer.beian.gongan_id, theme.footer.beian.gongan_num + ' ') }}
     {%- endif %}
+
   </div>
 {%- endif %}
 
 <div class="copyright">
+  
   {% set copyright_year = date(null, 'YYYY') %}
   &copy; {% if theme.footer.since and theme.footer.since != copyright_year %}{{ theme.footer.since }} – {% endif %}
-  <span itemprop="copyrightYear">{{ copyright_year }}</span>
+  <span itemprop="copyrightYear">{{ copyright_year }}</span> 
+  
   <span class="with-love">
     <i class="fa fa-{{ theme.footer.icon.name }}"></i>
   </span>
@@ -42,18 +45,14 @@
   {%- endif %}
 </div>
 
-{%- if theme.footer.powered.enable %}
-  <div class="powered-by">
-    {{- __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}
-    {%- if theme.footer.powered.version %} v{{ hexo_version }}{%- endif %}
-  </div>
-{%- endif %}
+
 
 {%- if theme.footer.powered.enable and theme.footer.theme.enable %}
-  <span class="post-meta-divider">|</span>
+  <!--<span class="post-meta-divider">|</span>-->
 {%- endif %}
 
 {%- if theme.footer.theme.enable %}
+  <!-- 
   <div class="theme-info">
     {%- set next_site = 'https://theme-next.org' %}
     {%- if theme.scheme !== 'Gemini' %}
@@ -62,6 +61,48 @@
     {{- __('footer.theme') }} – {{ next_url(next_site, 'NexT.' + theme.scheme, {class: 'theme-link'}) }}
     {%- if theme.footer.theme.version %} v{{ next_version }}{%- endif %}
   </div>
+    <div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共{{ totalcount(site) }}字</span>
+  </div>
+  -->
+  
+  
+
+  <div id="days"></div>
+	</script>
+	<script language="javascript">
+	function show_date_time(){
+	window.setTimeout("show_date_time()", 1000);
+	BirthDay=new Date("11/29/2019 20:00:00");
+	today=new Date();
+	timeold=(today.getTime()-BirthDay.getTime());
+	sectimeold=timeold/1000
+	secondsold=Math.floor(sectimeold);
+	msPerDay=24*60*60*1000
+	e_daysold=timeold/msPerDay
+	daysold=Math.floor(e_daysold);
+	e_hrsold=(e_daysold-daysold)*24;
+	hrsold=setzero(Math.floor(e_hrsold));
+	e_minsold=(e_hrsold-hrsold)*60;
+	minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+	seconds=setzero(Math.floor((e_minsold-minsold)*60));
+	document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"时"+minsold+"分"+seconds+"秒";
+	}
+	function setzero(i){
+	if (i<10)
+	{i="0" + i};
+	return i;
+	}
+	show_date_time();
+	</script>
+  
+{%- endif %}
+
+{%- if theme.footer.powered.enable %}
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次
+  </span>
 {%- endif %}
 
 {%- if theme.add_this_id %}

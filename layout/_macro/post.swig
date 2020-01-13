@@ -1,16 +1,16 @@
   {##################}
   {### POST BLOCK ###}
   {##################}
-  <article itemscope itemtype="http://schema.org/Article" class="post-block {% if is_index %}home{% endif %}" lang="{{ post.lang or post.language or config.language }}">
+  <article itemscope itemtype="https://schema.org/Article" class="post-block {% if is_index %}home{% endif %}" lang="{{ post.lang or post.language or config.language }}">
     <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="https://schema.org/Person">
       <meta itemprop="image" content="{{ url_for(theme.avatar.url or theme.images + '/avatar.gif') }}">
       <meta itemprop="name" content="{{ author }}">
       <meta itemprop="description" content="{{ description }}">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
       <meta itemprop="name" content="{{ title }}">
     </span>
 
@@ -41,7 +41,11 @@
         </{%- if theme.seo %}h2{% else %}h1{%- endif %}>
 
         <div class="post-meta">
-
+          {% if post.top %}
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>置顶</font>
+            <span class="post-meta-divider">|</span>
+          {% endif %}
           {%- set date_diff = date(post.date) != date(post.updated) %}
           {%- set time_diff = time(post.date) != time(post.updated) %}
           {%- set datetime_diff = date_diff or time_diff %}
@@ -84,7 +88,7 @@
               </span>
               <span class="post-meta-item-text">{{ __('post.in') }}</span>
               {%- for cat in post.categories.toArray() %}
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="{{ url_for(cat.path) }}" itemprop="url" rel="index">
                     <span itemprop="name">{{ cat.name }}</span>
                   </a>
@@ -99,6 +103,8 @@
           {%- endif %}
 
           {# LeanCloud PageView #}
+		  {#添加换行#}
+		  <br>
           {%- if theme.leancloud_visitors.enable or (theme.valine.enable and theme.valine.appid and theme.valine.appkey and theme.valine.visitor) %}
             <span id="{{ url_for(post.path) }}" class="post-meta-item leancloud_visitors" data-flag-title="{{ post.title }}" title="{{ __('post.views') }}">
               <span class="post-meta-item-icon">
@@ -110,6 +116,7 @@
           {%- endif %}
 
           {%- if theme.firestore.enable %}
+		    
             <span class="post-meta-item" title="{{ __('post.views') }}">
               <span class="post-meta-item-icon">
                 <i class="fa fa-users"></i>
@@ -132,7 +139,7 @@
           {{- next_inject('postMeta') }}
 
           {%- if config.symbols_count_time.symbols %}
-          {%- if theme.symbols_count_time.separated_meta %}<br>{%- endif %}
+         {#  注释 {%- if theme.symbols_count_time.separated_meta %}<br>{%- endif %}   #}
             <span class="post-meta-item" title="{{ __('symbols_count_time.count') }}">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -159,7 +166,7 @@
           {%- if post.description and (not theme.excerpt_description or not is_index) %}
             <div class="post-description">{{ post.description }}</div>
           {%- endif %}
-
+			
         </div>
       </header>
     {%- endif %}
@@ -171,7 +178,7 @@
 
       {# Gallery support #}
       {%- if post.photos and post.photos.length %}
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+        <div class="post-gallery" itemscope itemtype="https://schema.org/ImageGallery">
           {%- set COLUMN_NUMBER = 3 %}
           {%- for photo in post.photos.toArray() %}
             {%- if loop.index0 % COLUMN_NUMBER === 0 %}<div class="post-gallery-row">{%- endif %}
@@ -218,6 +225,12 @@
     {#####################}
     {### END POST BODY ###}
     {#####################}
+	
+	<div>
+		  {% if not is_index %}
+			{% include 'my-copyright.swig' %}
+		  {% endif %}
+	</div>
 
     {%- if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %}
       {{ partial('_partials/post/post-related.swig') }}
@@ -243,7 +256,7 @@
           {%- endif %}
           <div class="post-tags">
             {%- for tag in post.tags.toArray() %}
-              <a href="{{ url_for(tag.path) }}" rel="tag">{{ tag_indicate }} {{ tag.name }}</a>
+              <a href="{{ url_for(tag.path) }}" rel="tag"><i class="fa fa-tag"></i> {{ tag.name }}</a>
             {%- endfor %}
           </div>
         {%- endif %}

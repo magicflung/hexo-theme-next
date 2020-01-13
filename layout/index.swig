@@ -1,8 +1,8 @@
 {% extends '_layout.swig' %}
 {% import '_macro/sidebar.swig' as sidebar_template with context %}
 
-{% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
 
+{% block title %} {{ theme.keywords }} - {{ config.title }}{{ theme.description }} {% endblock %}
 {% block content %}
 
   <div class="posts-expand">
